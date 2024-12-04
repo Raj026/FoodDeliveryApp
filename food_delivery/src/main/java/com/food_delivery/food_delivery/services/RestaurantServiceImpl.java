@@ -17,6 +17,8 @@ public class RestaurantServiceImpl implements RestaurantService{
     private RestaurantRepository restaurantRepository;
 
     @Autowired
+    private RedisService redisService;
+    @Autowired
     private CategoryRepository categoryRepository;
     @Override
     public Restaurant addRestaurant(Restaurant restaurant) {
@@ -43,7 +45,16 @@ public class RestaurantServiceImpl implements RestaurantService{
 
     @Override
     public Restaurant getRestaurant(int restaurantId) {
-        return restaurantRepository.findById(restaurantId).orElse(null);
+        Restaurant restaurant = redisService.get("restaurantId"+restaurantId, Restaurant.class);
+        if(restaurant != null){
+            return restaurant;
+        }
+
+        Restaurant fetchedRestaurant = restaurantRepository.findById(restaurantId).orElse(null);
+        if(fetchedRestaurant !=null){
+            redisService.set("restaurantId"+restaurantId, fetchedRestaurant, 40l);
+        }
+        return fetchedRestaurant;
     }
 
     @Override

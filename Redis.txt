@@ -1,0 +1,5 @@
+We need to start the Ubuntu on the windows and type
+
+=> sudo service redis-server start
+
+=> redis-cli

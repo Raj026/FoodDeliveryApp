@@ -1,0 +1,22 @@
+spring:
+  redis:
+    host: localhost
+    port: 6379
+#  cache:
+#    type: redis
+#    host: localhost
+#    port: 6379
+#    redis:
+#      time-to-live: 60000
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/food_delivery_management
+    password: '2607'
+  application:
+    name: food_delivery
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+

@@ -4,6 +4,7 @@ import com.food_delivery.food_delivery.models.Restaurant;
 import com.food_delivery.food_delivery.services.RestaurantService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,7 @@ public class RestaurantController {
 
 
     @GetMapping("/{id}")
+//    @Cacheable(value = "restaurant", key = "#restaurantId")
     public ResponseEntity<Restaurant> getRestaurant(@PathVariable("id") int restaurantId){
         return new ResponseEntity<Restaurant>(restaurantService.getRestaurant(restaurantId), HttpStatus.OK);
     }
