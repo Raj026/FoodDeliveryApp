@@ -20,3 +20,10 @@ spring:
       ddl-auto: update
     show-sql: 'true'
 
+security:
+  jwt:
+    secret-key: 84b2948b395c81150179904b2852c1f2724d31c32f20502e1bb9490b24ca2560
+    # 1h in millisecond
+    expiration-time: 3600000
+
+
